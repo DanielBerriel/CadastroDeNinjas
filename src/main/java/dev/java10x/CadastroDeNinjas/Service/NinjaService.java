@@ -15,4 +15,8 @@ public class NinjaService {
         this.ninjaRepository = ninjaRepository;
     }
 
+    public List<NinjaModel> getAll() { return ninjaRepository.findAll(); }
+    public NinjaModel save(NinjaModel ninja) { return ninjaRepository.save(ninja); }
+    public void delete(Long id) { ninjaRepository.deleteById(id); }
+
 }
