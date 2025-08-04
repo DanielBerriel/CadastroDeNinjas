@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
@@ -25,5 +26,14 @@ public class NinjaController {
 
     @DeleteMapping("/{id}")
     public void deleteNinja(@PathVariable Long id) { ninjaService.delete(id); }
+
+    @PutMapping("{ninjaId}/missao/{missaoId}")
+    public ResponseEntity<NinjaModel> vincularMissao(
+            @PathVariable Long ninjaId,
+            @PathVariable Long missaoId
+    ) {
+        NinjaModel ninjaAtualizado = ninjaService.bindsNinjaToMission(ninjaId, missaoId);
+        return ResponseEntity.ok(ninjaAtualizado);
+    }
 
 }
